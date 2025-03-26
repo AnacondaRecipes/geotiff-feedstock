@@ -39,9 +39,9 @@ requirements:
 
 test:
   commands:
-    - test -f $PREFIX/lib/libgeotiff${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/libgeotiff${SHLIB_EXT}        # [not win]
     - if not exist %LIBRARY_LIB%\\geotiff_i.lib exit 1  # [win]
-    - if not exist %LIBRARY_BIN%\\geotiff.dll exit 1  # [win]
+    - if not exist %LIBRARY_BIN%\\geotiff.dll exit 1    # [win]
 
 about:
   home: https://trac.osgeo.org/geotiff
