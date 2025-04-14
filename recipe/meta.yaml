@@ -30,7 +30,7 @@ requirements:
     - proj {{ proj }}
     - zlib {{ zlib }}
     - jpeg {{ jpeg }}
-    - libtiff 4.7.0
+    - libtiff {{ libtiff }}
   run:
     - proj
     - zlib
