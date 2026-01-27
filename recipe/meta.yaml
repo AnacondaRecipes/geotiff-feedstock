@@ -1,39 +1,39 @@
-{% set version = "1.7.0" %}
+{% set name = "geotiff" %}
+{% set version = "1.7.4" %}
 
 package:
-  name: geotiff
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-{{ version }}.tar.gz
-  sha256: fc304d8839ca5947cfbeb63adb9d1aa47acef38fc6d6689e622926e672a99a7e
+  url: https://download.osgeo.org/{{ name }}/libgeotiff/libgeotiff-{{ version }}.tar.gz
+  sha256: c598d04fdf2ba25c4352844dafa81dde3f7fd968daa7ad131228cd91e9d3dc47
   patches:
     - cmake.patch
 
 build:
-  number: 4
-  skip: True  # [win and vc<14]
+  number: 0
+  skip: true  # [win and vc<14]
   run_exports:
     # https://abi-laboratory.pro/?view=timeline&l=libgeotiff
     - {{ pin_subpackage('geotiff', max_pin='x.x') }}
 
 requirements:
   build:
-    - patch     # [not win]
-    - m2-patch  # [win]
+    - {{ stdlib('c') }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - make  # [unix]
     - cmake
     - gnuconfig  # [unix]
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
   host:
     - proj {{ proj }}
-    - zlib {{ zlib }}
+    - libzlib {{ libzlib }}
     - jpeg {{ jpeg }}
     - libtiff {{ libtiff }}
   run:
     - proj
-    - zlib
+    - libzlib
     - jpeg
     - libtiff
 
